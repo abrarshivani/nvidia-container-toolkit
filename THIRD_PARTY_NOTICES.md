@@ -12,6 +12,13 @@ and `nvidia-cdi-hook` commands ship in the deb and rpm packages. The
 Go standard library packages are excluded; they are covered by the license of
 the Go distribution itself.
 
+Each dependency is listed with the version redistributed and a link to the
+license file in that version's upstream source. Every link was verified by
+fetching it and comparing its contents against the copy vendored here, so each
+one resolves to the same license text reproduced below. Modules that no command
+under `cmd/` links are not listed; those are vendored only for this module's own
+tests and build tooling.
+
 The `container-toolkit` image uses `nvcr.io/nvidia/distroless/go` as a base image.
 All of the OSS packages and source included in this image can be found at
 https://developer.nvidia.com/w/distroless-oss/index.html. A statically compiled
@@ -19,50 +26,52 @@ busybox binary is added to the image, which is licensed under GPLv2.
 
 ## Go Module Index
 
-| Package | License | Dependency |
-|---------|---------|------------|
-| `github.com/Masterminds/semver/v3` | MIT | `github.com/Masterminds/semver/v3` |
-| `github.com/NVIDIA/go-nvlib/pkg` | Apache-2.0 | `github.com/NVIDIA/go-nvlib` |
-| `github.com/NVIDIA/go-nvml/pkg` | Apache-2.0 | `github.com/NVIDIA/go-nvml` |
-| `github.com/containerd/log` | Apache-2.0 | `github.com/containerd/log` |
-| `github.com/containerd/nri/pkg` | Apache-2.0 | `github.com/containerd/nri` |
-| `github.com/containerd/ttrpc` | Apache-2.0 | `github.com/containerd/ttrpc` |
-| `github.com/cyphar/filepath-securejoin` | BSD-3-Clause / MPL-2.0 | `github.com/cyphar/filepath-securejoin` |
-| `github.com/fsnotify/fsnotify` | BSD-3-Clause | `github.com/fsnotify/fsnotify` |
-| `github.com/google/uuid` | BSD-3-Clause | `github.com/google/uuid` |
-| `github.com/knqyf263/go-plugin/wasm` | MIT | `github.com/knqyf263/go-plugin` |
-| `github.com/moby/sys/capability` | BSD-2-Clause | `github.com/moby/sys/capability` |
-| `github.com/moby/sys/mountinfo` | Apache-2.0 | `github.com/moby/sys/mountinfo` |
-| `github.com/moby/sys/reexec` | Apache-2.0 | `github.com/moby/sys/reexec` |
-| `github.com/opencontainers/cgroups/devices/config` | Apache-2.0 | `github.com/opencontainers/cgroups` |
-| `github.com/opencontainers/runc` | Apache-2.0 | `github.com/opencontainers/runc` |
-| `github.com/opencontainers/runtime-spec/specs-go` | Apache-2.0 | `github.com/opencontainers/runtime-spec` |
-| `github.com/opencontainers/runtime-tools` | Apache-2.0 | `github.com/opencontainers/runtime-tools` |
-| `github.com/pelletier/go-toml` | Apache-2.0 / MIT | `github.com/pelletier/go-toml` |
-| `github.com/prometheus/procfs` | Apache-2.0 | `github.com/prometheus/procfs` |
-| `github.com/sirupsen/logrus` | MIT | `github.com/sirupsen/logrus` |
-| `github.com/tetratelabs/wazero` | Apache-2.0 | `github.com/tetratelabs/wazero` |
-| `github.com/urfave/cli-altsrc/v3` | MIT | `github.com/urfave/cli-altsrc/v3` |
-| `github.com/urfave/cli/v3` | MIT | `github.com/urfave/cli/v3` |
-| `golang.org/x/mod/semver` | BSD-3-Clause | `golang.org/x/mod` |
-| `golang.org/x/sys` | BSD-3-Clause | `golang.org/x/sys` |
-| `google.golang.org/genproto/googleapis/rpc/status` | Apache-2.0 | `google.golang.org/genproto/googleapis/rpc` |
-| `google.golang.org/grpc` | Apache-2.0 | `google.golang.org/grpc` |
-| `google.golang.org/protobuf` | BSD-3-Clause | `google.golang.org/protobuf` |
-| `gopkg.in/yaml.v3` | MIT | `gopkg.in/yaml.v3` |
-| `sigs.k8s.io/yaml` | Apache-2.0 / BSD-3-Clause / MIT | `sigs.k8s.io/yaml` |
-| `sigs.k8s.io/yaml/goyaml.v2` | Apache-2.0 | `sigs.k8s.io/yaml` |
-| `tags.cncf.io/container-device-interface` | Apache-2.0 | `tags.cncf.io/container-device-interface` |
-| `tags.cncf.io/container-device-interface/specs-go` | Apache-2.0 | `tags.cncf.io/container-device-interface/specs-go` |
+| Package | Version | License | Location |
+|---------|---------|---------|----------|
+| `github.com/Masterminds/semver/v3` | v3.5.0 | MIT | [LICENSE.txt](https://github.com/Masterminds/semver/blob/v3.5.0/LICENSE.txt) |
+| `github.com/NVIDIA/go-nvlib/pkg` | v0.12.0 | Apache-2.0 | [LICENSE](https://github.com/NVIDIA/go-nvlib/blob/v0.12.0/LICENSE) / [NOTICE](https://github.com/NVIDIA/go-nvlib/blob/v0.12.0/NOTICE) |
+| `github.com/NVIDIA/go-nvml/pkg` | v0.13.3-1 | Apache-2.0 | [LICENSE](https://github.com/NVIDIA/go-nvml/blob/v0.13.3-1/LICENSE) |
+| `github.com/containerd/log` | v0.1.0 | Apache-2.0 | [LICENSE](https://github.com/containerd/log/blob/v0.1.0/LICENSE) |
+| `github.com/containerd/nri/pkg` | v0.12.1 | Apache-2.0 | [LICENSE](https://github.com/containerd/nri/blob/v0.12.1/LICENSE) |
+| `github.com/containerd/ttrpc` | v1.2.7 | Apache-2.0 | [LICENSE](https://github.com/containerd/ttrpc/blob/v1.2.7/LICENSE) |
+| `github.com/cyphar/filepath-securejoin` | v0.7.0 | BSD-3-Clause / MPL-2.0 | [COPYING.md](https://github.com/cyphar/filepath-securejoin/blob/v0.7.0/COPYING.md) / [LICENSE.BSD](https://github.com/cyphar/filepath-securejoin/blob/v0.7.0/LICENSE.BSD) / [LICENSE.MPL-2.0](https://github.com/cyphar/filepath-securejoin/blob/v0.7.0/LICENSE.MPL-2.0) |
+| `github.com/fsnotify/fsnotify` | v1.7.0 | BSD-3-Clause | [LICENSE](https://github.com/fsnotify/fsnotify/blob/v1.7.0/LICENSE) |
+| `github.com/google/uuid` | v1.6.0 | BSD-3-Clause | [LICENSE](https://github.com/google/uuid/blob/v1.6.0/LICENSE) |
+| `github.com/knqyf263/go-plugin/wasm` | v0.9.0 | MIT | [LICENSE](https://github.com/knqyf263/go-plugin/blob/v0.9.0/LICENSE) |
+| `github.com/moby/sys/capability` | v0.4.0 | BSD-2-Clause | [LICENSE](https://github.com/moby/sys/blob/capability/v0.4.0/capability/LICENSE) |
+| `github.com/moby/sys/mountinfo` | v0.7.2 | Apache-2.0 | [LICENSE](https://github.com/moby/sys/blob/mountinfo/v0.7.2/LICENSE) |
+| `github.com/moby/sys/reexec` | v0.1.0 | Apache-2.0 | [LICENSE](https://github.com/moby/sys/blob/reexec/v0.1.0/LICENSE) |
+| `github.com/opencontainers/cgroups/devices/config` | v0.0.7 | Apache-2.0 | [LICENSE](https://github.com/opencontainers/cgroups/blob/v0.0.7/LICENSE) |
+| `github.com/opencontainers/runc` | v1.4.3 | Apache-2.0 | [LICENSE](https://github.com/opencontainers/runc/blob/v1.4.3/LICENSE) / [NOTICE](https://github.com/opencontainers/runc/blob/v1.4.3/NOTICE) |
+| `github.com/opencontainers/runtime-spec/specs-go` | v1.3.0 | Apache-2.0 | [LICENSE](https://github.com/opencontainers/runtime-spec/blob/v1.3.0/LICENSE) |
+| `github.com/opencontainers/runtime-tools` | v0.9.1-0.20251114084447-edf4cb3d2116 | Apache-2.0 | [LICENSE](https://github.com/opencontainers/runtime-tools/blob/edf4cb3d2116/LICENSE) |
+| `github.com/pelletier/go-toml` | v1.9.5 | Apache-2.0 / MIT | [LICENSE](https://github.com/pelletier/go-toml/blob/v1.9.5/LICENSE) |
+| `github.com/prometheus/procfs` | v0.21.1 | Apache-2.0 | [LICENSE](https://github.com/prometheus/procfs/blob/v0.21.1/LICENSE) / [NOTICE](https://github.com/prometheus/procfs/blob/v0.21.1/NOTICE) |
+| `github.com/sirupsen/logrus` | v1.9.4 | MIT | [LICENSE](https://github.com/sirupsen/logrus/blob/v1.9.4/LICENSE) |
+| `github.com/tetratelabs/wazero` | v1.11.0 | Apache-2.0 | [LICENSE](https://github.com/tetratelabs/wazero/blob/v1.11.0/LICENSE) / [NOTICE](https://github.com/tetratelabs/wazero/blob/v1.11.0/NOTICE) |
+| `github.com/urfave/cli-altsrc/v3` | v3.1.0 | MIT | [LICENSE](https://github.com/urfave/cli-altsrc/blob/v3.1.0/LICENSE) |
+| `github.com/urfave/cli/v3` | v3.10.1 | MIT | [LICENSE](https://github.com/urfave/cli/blob/v3.10.1/LICENSE) |
+| `golang.org/x/mod/semver` | v0.38.0 | BSD-3-Clause | [LICENSE](https://go.googlesource.com/mod/+/refs/tags/v0.38.0/LICENSE) / [PATENTS](https://go.googlesource.com/mod/+/refs/tags/v0.38.0/PATENTS) |
+| `golang.org/x/sys` | v0.47.0 | BSD-3-Clause | [LICENSE](https://go.googlesource.com/sys/+/refs/tags/v0.47.0/LICENSE) / [PATENTS](https://go.googlesource.com/sys/+/refs/tags/v0.47.0/PATENTS) |
+| `google.golang.org/genproto/googleapis/rpc/status` | v0.0.0-20260414002931-afd174a4e478 | Apache-2.0 | [LICENSE](https://github.com/googleapis/go-genproto/blob/afd174a4e478/LICENSE) |
+| `google.golang.org/grpc` | v1.82.1 | Apache-2.0 | [AUTHORS](https://github.com/grpc/grpc-go/blob/v1.82.1/AUTHORS) / [LICENSE](https://github.com/grpc/grpc-go/blob/v1.82.1/LICENSE) / [NOTICE.txt](https://github.com/grpc/grpc-go/blob/v1.82.1/NOTICE.txt) |
+| `google.golang.org/protobuf` | v1.36.11 | BSD-3-Clause | [LICENSE](https://go.googlesource.com/protobuf/+/refs/tags/v1.36.11/LICENSE) / [PATENTS](https://go.googlesource.com/protobuf/+/refs/tags/v1.36.11/PATENTS) |
+| `gopkg.in/yaml.v3` | v3.0.1 | Apache-2.0 / MIT | [LICENSE](https://github.com/go-yaml/yaml/blob/v3.0.1/LICENSE) / [NOTICE](https://github.com/go-yaml/yaml/blob/v3.0.1/NOTICE) |
+| `sigs.k8s.io/yaml` | v1.4.0 | Apache-2.0 / BSD-3-Clause / MIT | [LICENSE](https://github.com/kubernetes-sigs/yaml/blob/v1.4.0/LICENSE) |
+| `sigs.k8s.io/yaml/goyaml.v2` | v1.4.0 | Apache-2.0 / MIT | [LICENSE](https://github.com/kubernetes-sigs/yaml/blob/v1.4.0/goyaml.v2/LICENSE) / [LICENSE.libyaml](https://github.com/kubernetes-sigs/yaml/blob/v1.4.0/goyaml.v2/LICENSE.libyaml) / [NOTICE](https://github.com/kubernetes-sigs/yaml/blob/v1.4.0/goyaml.v2/NOTICE) |
+| `tags.cncf.io/container-device-interface` | v1.1.0 | Apache-2.0 | [LICENSE](https://github.com/cncf-tags/container-device-interface/blob/v1.1.0/LICENSE) |
+| `tags.cncf.io/container-device-interface/specs-go` | v1.1.0 | Apache-2.0 | [LICENSE](https://github.com/cncf-tags/container-device-interface/blob/specs-go/v1.1.0/LICENSE) |
 
 ## Go Module License Texts
 
 ### github.com/Masterminds/semver/v3
 
+* Version: v3.5.0
 * License: MIT
-* Module: github.com/Masterminds/semver/v3
 
 #### LICENSE.txt
+
+<https://github.com/Masterminds/semver/blob/v3.5.0/LICENSE.txt>
 
 ```text
 Copyright (C) 2014-2019, Matt Butcher and Matt Farina
@@ -90,10 +99,12 @@ THE SOFTWARE.
 
 ### github.com/NVIDIA/go-nvlib/pkg
 
+* Version: v0.12.0
 * License: Apache-2.0
-* Module: github.com/NVIDIA/go-nvlib
 
 #### LICENSE
+
+<https://github.com/NVIDIA/go-nvlib/blob/v0.12.0/LICENSE>
 
 ```text
 
@@ -303,6 +314,8 @@ THE SOFTWARE.
 
 #### NOTICE
 
+<https://github.com/NVIDIA/go-nvlib/blob/v0.12.0/NOTICE>
+
 ```text
 The file pkg/pciids/default_pci.ids is distributed under the 3-clause BSD License.
 Maintained by Albert Pool, Martin Mares, and other volunteers from
@@ -314,10 +327,12 @@ the PCI ID Project at https://pci-ids.ucw.cz/.
 
 ### github.com/NVIDIA/go-nvml/pkg
 
+* Version: v0.13.3-1
 * License: Apache-2.0
-* Module: github.com/NVIDIA/go-nvml
 
 #### LICENSE
+
+<https://github.com/NVIDIA/go-nvml/blob/v0.13.3-1/LICENSE>
 
 ```text
 
@@ -528,10 +543,12 @@ the PCI ID Project at https://pci-ids.ucw.cz/.
 
 ### github.com/containerd/log
 
+* Version: v0.1.0
 * License: Apache-2.0
-* Module: github.com/containerd/log
 
 #### LICENSE
+
+<https://github.com/containerd/log/blob/v0.1.0/LICENSE>
 
 ```text
 
@@ -731,10 +748,12 @@ the PCI ID Project at https://pci-ids.ucw.cz/.
 
 ### github.com/containerd/nri/pkg
 
+* Version: v0.12.1
 * License: Apache-2.0
-* Module: github.com/containerd/nri
 
 #### LICENSE
+
+<https://github.com/containerd/nri/blob/v0.12.1/LICENSE>
 
 ```text
                                  Apache License
@@ -944,10 +963,12 @@ the PCI ID Project at https://pci-ids.ucw.cz/.
 
 ### github.com/containerd/ttrpc
 
+* Version: v1.2.7
 * License: Apache-2.0
-* Module: github.com/containerd/ttrpc
 
 #### LICENSE
+
+<https://github.com/containerd/ttrpc/blob/v1.2.7/LICENSE>
 
 ```text
                                  Apache License
@@ -1157,10 +1178,12 @@ the PCI ID Project at https://pci-ids.ucw.cz/.
 
 ### github.com/cyphar/filepath-securejoin
 
+* Version: v0.7.0
 * License: BSD-3-Clause / MPL-2.0
-* Module: github.com/cyphar/filepath-securejoin
 
 #### COPYING.md
+
+<https://github.com/cyphar/filepath-securejoin/blob/v0.7.0/COPYING.md>
 
 ````text
 ## COPYING ##
@@ -1615,6 +1638,8 @@ Exhibit B - "Incompatible With Secondary Licenses" Notice
 
 #### LICENSE.BSD
 
+<https://github.com/cyphar/filepath-securejoin/blob/v0.7.0/LICENSE.BSD>
+
 ```text
 Copyright (C) 2014-2015 Docker Inc & Go Authors. All rights reserved.
 Copyright (C) 2017-2024 SUSE LLC. All rights reserved.
@@ -1648,6 +1673,8 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 ```
 
 #### LICENSE.MPL-2.0
+
+<https://github.com/cyphar/filepath-securejoin/blob/v0.7.0/LICENSE.MPL-2.0>
 
 ```text
 Mozilla Public License Version 2.0
@@ -2029,10 +2056,12 @@ Exhibit B - "Incompatible With Secondary Licenses" Notice
 
 ### github.com/fsnotify/fsnotify
 
+* Version: v1.7.0
 * License: BSD-3-Clause
-* Module: github.com/fsnotify/fsnotify
 
 #### LICENSE
+
+<https://github.com/fsnotify/fsnotify/blob/v1.7.0/LICENSE>
 
 ```text
 Copyright © 2012 The Go Authors. All rights reserved.
@@ -2066,10 +2095,12 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 ### github.com/google/uuid
 
+* Version: v1.6.0
 * License: BSD-3-Clause
-* Module: github.com/google/uuid
 
 #### LICENSE
+
+<https://github.com/google/uuid/blob/v1.6.0/LICENSE>
 
 ```text
 Copyright (c) 2009,2014 Google Inc. All rights reserved.
@@ -2105,10 +2136,12 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 ### github.com/knqyf263/go-plugin/wasm
 
+* Version: v0.9.0
 * License: MIT
-* Module: github.com/knqyf263/go-plugin
 
 #### LICENSE
+
+<https://github.com/knqyf263/go-plugin/blob/v0.9.0/LICENSE>
 
 ```text
 MIT License
@@ -2138,10 +2171,12 @@ SOFTWARE.
 
 ### github.com/moby/sys/capability
 
+* Version: v0.4.0
 * License: BSD-2-Clause
-* Module: github.com/moby/sys/capability
 
 #### LICENSE
+
+<https://github.com/moby/sys/blob/capability/v0.4.0/capability/LICENSE>
 
 ```text
 Copyright 2023 The Capability Authors.
@@ -2175,10 +2210,12 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 ### github.com/moby/sys/mountinfo
 
+* Version: v0.7.2
 * License: Apache-2.0
-* Module: github.com/moby/sys/mountinfo
 
 #### LICENSE
+
+<https://github.com/moby/sys/blob/mountinfo/v0.7.2/LICENSE>
 
 ```text
 
@@ -2389,10 +2426,12 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 ### github.com/moby/sys/reexec
 
+* Version: v0.1.0
 * License: Apache-2.0
-* Module: github.com/moby/sys/reexec
 
 #### LICENSE
+
+<https://github.com/moby/sys/blob/reexec/v0.1.0/LICENSE>
 
 ```text
 
@@ -2603,10 +2642,12 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 ### github.com/opencontainers/cgroups/devices/config
 
+* Version: v0.0.7
 * License: Apache-2.0
-* Module: github.com/opencontainers/cgroups
 
 #### LICENSE
+
+<https://github.com/opencontainers/cgroups/blob/v0.0.7/LICENSE>
 
 ```text
                                  Apache License
@@ -2816,10 +2857,12 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 ### github.com/opencontainers/runc
 
+* Version: v1.4.3
 * License: Apache-2.0
-* Module: github.com/opencontainers/runc
 
 #### LICENSE
+
+<https://github.com/opencontainers/runc/blob/v1.4.3/LICENSE>
 
 ```text
 
@@ -3018,6 +3061,8 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 #### NOTICE
 
+<https://github.com/opencontainers/runc/blob/v1.4.3/NOTICE>
+
 ```text
 runc
 
@@ -3042,10 +3087,12 @@ See also http://www.apache.org/dev/crypto.html and/or seek legal counsel.
 
 ### github.com/opencontainers/runtime-spec/specs-go
 
+* Version: v1.3.0
 * License: Apache-2.0
-* Module: github.com/opencontainers/runtime-spec
 
 #### LICENSE
+
+<https://github.com/opencontainers/runtime-spec/blob/v1.3.0/LICENSE>
 
 ```text
 
@@ -3245,10 +3292,12 @@ See also http://www.apache.org/dev/crypto.html and/or seek legal counsel.
 
 ### github.com/opencontainers/runtime-tools
 
+* Version: v0.9.1-0.20251114084447-edf4cb3d2116
 * License: Apache-2.0
-* Module: github.com/opencontainers/runtime-tools
 
 #### LICENSE
+
+<https://github.com/opencontainers/runtime-tools/blob/edf4cb3d2116/LICENSE>
 
 ```text
 
@@ -3448,10 +3497,12 @@ See also http://www.apache.org/dev/crypto.html and/or seek legal counsel.
 
 ### github.com/pelletier/go-toml
 
+* Version: v1.9.5
 * License: Apache-2.0 / MIT
-* Module: github.com/pelletier/go-toml
 
 #### LICENSE
+
+<https://github.com/pelletier/go-toml/blob/v1.9.5/LICENSE>
 
 ```text
 The bulk of github.com/pelletier/go-toml is distributed under the MIT license
@@ -3707,10 +3758,12 @@ License:
 
 ### github.com/prometheus/procfs
 
+* Version: v0.21.1
 * License: Apache-2.0
-* Module: github.com/prometheus/procfs
 
 #### LICENSE
+
+<https://github.com/prometheus/procfs/blob/v0.21.1/LICENSE>
 
 ```text
                                  Apache License
@@ -3919,6 +3972,8 @@ License:
 
 #### NOTICE
 
+<https://github.com/prometheus/procfs/blob/v0.21.1/NOTICE>
+
 ```text
 procfs provides functions to retrieve system, kernel and process
 metrics from the pseudo-filesystem proc.
@@ -3933,10 +3988,12 @@ SoundCloud Ltd. (http://soundcloud.com/).
 
 ### github.com/sirupsen/logrus
 
+* Version: v1.9.4
 * License: MIT
-* Module: github.com/sirupsen/logrus
 
 #### LICENSE
+
+<https://github.com/sirupsen/logrus/blob/v1.9.4/LICENSE>
 
 ```text
 The MIT License (MIT)
@@ -3966,10 +4023,12 @@ THE SOFTWARE.
 
 ### github.com/tetratelabs/wazero
 
+* Version: v1.11.0
 * License: Apache-2.0
-* Module: github.com/tetratelabs/wazero
 
 #### LICENSE
+
+<https://github.com/tetratelabs/wazero/blob/v1.11.0/LICENSE>
 
 ```text
                                  Apache License
@@ -4178,6 +4237,8 @@ THE SOFTWARE.
 
 #### NOTICE
 
+<https://github.com/tetratelabs/wazero/blob/v1.11.0/NOTICE>
+
 ```text
 wazero
 Copyright 2020-2023 wazero authors
@@ -4187,10 +4248,12 @@ Copyright 2020-2023 wazero authors
 
 ### github.com/urfave/cli-altsrc/v3
 
+* Version: v3.1.0
 * License: MIT
-* Module: github.com/urfave/cli-altsrc/v3
 
 #### LICENSE
+
+<https://github.com/urfave/cli-altsrc/blob/v3.1.0/LICENSE>
 
 ```text
 MIT License
@@ -4220,10 +4283,12 @@ SOFTWARE.
 
 ### github.com/urfave/cli/v3
 
+* Version: v3.10.1
 * License: MIT
-* Module: github.com/urfave/cli/v3
 
 #### LICENSE
+
+<https://github.com/urfave/cli/blob/v3.10.1/LICENSE>
 
 ```text
 MIT License
@@ -4253,10 +4318,12 @@ SOFTWARE.
 
 ### golang.org/x/mod/semver
 
+* Version: v0.38.0
 * License: BSD-3-Clause
-* Module: golang.org/x/mod
 
 #### LICENSE
+
+<https://go.googlesource.com/mod/+/refs/tags/v0.38.0/LICENSE>
 
 ```text
 Copyright 2009 The Go Authors.
@@ -4286,16 +4353,48 @@ DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
 THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
 (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+```
+
+#### PATENTS
+
+<https://go.googlesource.com/mod/+/refs/tags/v0.38.0/PATENTS>
+
+```text
+Additional IP Rights Grant (Patents)
+
+"This implementation" means the copyrightable works distributed by
+Google as part of the Go project.
+
+Google hereby grants to You a perpetual, worldwide, non-exclusive,
+no-charge, royalty-free, irrevocable (except as stated in this section)
+patent license to make, have made, use, offer to sell, sell, import,
+transfer and otherwise run, modify and propagate the contents of this
+implementation of Go, where such license applies only to those patent
+claims, both currently owned or controlled by Google and acquired in
+the future, licensable by Google that are necessarily infringed by this
+implementation of Go.  This grant does not include claims that would be
+infringed only as a consequence of further modification of this
+implementation.  If you or your agent or exclusive licensee institute or
+order or agree to the institution of patent litigation against any
+entity (including a cross-claim or counterclaim in a lawsuit) alleging
+that this implementation of Go or any code incorporated within this
+implementation of Go constitutes direct or contributory patent
+infringement, or inducement of patent infringement, then any patent
+rights granted to you under this License for this implementation of Go
+shall terminate as of the date such litigation is filed.
 
 ```
 
 
 ### golang.org/x/sys
 
+* Version: v0.47.0
 * License: BSD-3-Clause
-* Module: golang.org/x/sys
 
 #### LICENSE
+
+<https://go.googlesource.com/sys/+/refs/tags/v0.47.0/LICENSE>
 
 ```text
 Copyright 2009 The Go Authors.
@@ -4328,13 +4427,45 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 ```
 
+#### PATENTS
+
+<https://go.googlesource.com/sys/+/refs/tags/v0.47.0/PATENTS>
+
+```text
+Additional IP Rights Grant (Patents)
+
+"This implementation" means the copyrightable works distributed by
+Google as part of the Go project.
+
+Google hereby grants to You a perpetual, worldwide, non-exclusive,
+no-charge, royalty-free, irrevocable (except as stated in this section)
+patent license to make, have made, use, offer to sell, sell, import,
+transfer and otherwise run, modify and propagate the contents of this
+implementation of Go, where such license applies only to those patent
+claims, both currently owned or controlled by Google and acquired in
+the future, licensable by Google that are necessarily infringed by this
+implementation of Go.  This grant does not include claims that would be
+infringed only as a consequence of further modification of this
+implementation.  If you or your agent or exclusive licensee institute or
+order or agree to the institution of patent litigation against any
+entity (including a cross-claim or counterclaim in a lawsuit) alleging
+that this implementation of Go or any code incorporated within this
+implementation of Go constitutes direct or contributory patent
+infringement, or inducement of patent infringement, then any patent
+rights granted to you under this License for this implementation of Go
+shall terminate as of the date such litigation is filed.
+
+```
+
 
 ### google.golang.org/genproto/googleapis/rpc/status
 
+* Version: v0.0.0-20260414002931-afd174a4e478
 * License: Apache-2.0
-* Module: google.golang.org/genproto/googleapis/rpc
 
 #### LICENSE
+
+<https://github.com/googleapis/go-genproto/blob/afd174a4e478/LICENSE>
 
 ```text
 
@@ -4545,10 +4676,21 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 ### google.golang.org/grpc
 
+* Version: v1.82.1
 * License: Apache-2.0
-* Module: google.golang.org/grpc
+
+#### AUTHORS
+
+<https://github.com/grpc/grpc-go/blob/v1.82.1/AUTHORS>
+
+```text
+Google Inc.
+
+```
 
 #### LICENSE
+
+<https://github.com/grpc/grpc-go/blob/v1.82.1/LICENSE>
 
 ```text
 
@@ -4758,6 +4900,8 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 #### NOTICE.txt
 
+<https://github.com/grpc/grpc-go/blob/v1.82.1/NOTICE.txt>
+
 ```text
 Copyright 2014 gRPC authors.
 
@@ -4778,10 +4922,12 @@ limitations under the License.
 
 ### google.golang.org/protobuf
 
+* Version: v1.36.11
 * License: BSD-3-Clause
-* Module: google.golang.org/protobuf
 
 #### LICENSE
+
+<https://go.googlesource.com/protobuf/+/refs/tags/v1.36.11/LICENSE>
 
 ```text
 Copyright (c) 2018 The Go Authors. All rights reserved.
@@ -4814,13 +4960,45 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 ```
 
+#### PATENTS
+
+<https://go.googlesource.com/protobuf/+/refs/tags/v1.36.11/PATENTS>
+
+```text
+Additional IP Rights Grant (Patents)
+
+"This implementation" means the copyrightable works distributed by
+Google as part of the Go project.
+
+Google hereby grants to You a perpetual, worldwide, non-exclusive,
+no-charge, royalty-free, irrevocable (except as stated in this section)
+patent license to make, have made, use, offer to sell, sell, import,
+transfer and otherwise run, modify and propagate the contents of this
+implementation of Go, where such license applies only to those patent
+claims, both currently owned or controlled by Google and acquired in
+the future, licensable by Google that are necessarily infringed by this
+implementation of Go.  This grant does not include claims that would be
+infringed only as a consequence of further modification of this
+implementation.  If you or your agent or exclusive licensee institute or
+order or agree to the institution of patent litigation against any
+entity (including a cross-claim or counterclaim in a lawsuit) alleging
+that this implementation of Go or any code incorporated within this
+implementation of Go constitutes direct or contributory patent
+infringement, or inducement of patent infringement, then any patent
+rights granted to you under this License for this implementation of Go
+shall terminate as of the date such litigation is filed.
+
+```
+
 
 ### gopkg.in/yaml.v3
 
-* License: MIT
-* Module: gopkg.in/yaml.v3
+* Version: v3.0.1
+* License: Apache-2.0 / MIT
 
 #### LICENSE
+
+<https://github.com/go-yaml/yaml/blob/v3.0.1/LICENSE>
 
 ```text
 
@@ -4878,6 +5056,8 @@ limitations under the License.
 
 #### NOTICE
 
+<https://github.com/go-yaml/yaml/blob/v3.0.1/NOTICE>
+
 ```text
 Copyright 2011-2016 Canonical Ltd.
 
@@ -4898,10 +5078,12 @@ limitations under the License.
 
 ### sigs.k8s.io/yaml
 
+* Version: v1.4.0
 * License: Apache-2.0 / BSD-3-Clause / MIT
-* Module: sigs.k8s.io/yaml
 
 #### LICENSE
+
+<https://github.com/kubernetes-sigs/yaml/blob/v1.4.0/LICENSE>
 
 ```text
 The MIT License (MIT)
@@ -5216,10 +5398,12 @@ Apache license:
 
 ### sigs.k8s.io/yaml/goyaml.v2
 
-* License: Apache-2.0
-* Module: sigs.k8s.io/yaml
+* Version: v1.4.0
+* License: Apache-2.0 / MIT
 
 #### LICENSE
+
+<https://github.com/kubernetes-sigs/yaml/blob/v1.4.0/goyaml.v2/LICENSE>
 
 ```text
                                  Apache License
@@ -5426,7 +5610,48 @@ Apache license:
 
 ```
 
+#### LICENSE.libyaml
+
+<https://github.com/kubernetes-sigs/yaml/blob/v1.4.0/goyaml.v2/LICENSE.libyaml>
+
+```text
+The following files were ported to Go from C files of libyaml, and thus
+are still covered by their original copyright and license:
+
+    apic.go
+    emitterc.go
+    parserc.go
+    readerc.go
+    scannerc.go
+    writerc.go
+    yamlh.go
+    yamlprivateh.go
+
+Copyright (c) 2006 Kirill Simonov
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of
+this software and associated documentation files (the "Software"), to deal in
+the Software without restriction, including without limitation the rights to
+use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies
+of the Software, and to permit persons to whom the Software is furnished to do
+so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+```
+
 #### NOTICE
+
+<https://github.com/kubernetes-sigs/yaml/blob/v1.4.0/goyaml.v2/NOTICE>
 
 ```text
 Copyright 2011-2016 Canonical Ltd.
@@ -5448,10 +5673,12 @@ limitations under the License.
 
 ### tags.cncf.io/container-device-interface
 
+* Version: v1.1.0
 * License: Apache-2.0
-* Module: tags.cncf.io/container-device-interface
 
 #### LICENSE
+
+<https://github.com/cncf-tags/container-device-interface/blob/v1.1.0/LICENSE>
 
 ```text
                                  Apache License
@@ -5661,10 +5888,12 @@ limitations under the License.
 
 ### tags.cncf.io/container-device-interface/specs-go
 
+* Version: v1.1.0
 * License: Apache-2.0
-* Module: tags.cncf.io/container-device-interface/specs-go
 
 #### LICENSE
+
+<https://github.com/cncf-tags/container-device-interface/blob/specs-go/v1.1.0/LICENSE>
 
 ```text
                                  Apache License
