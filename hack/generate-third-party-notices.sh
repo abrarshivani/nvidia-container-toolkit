@@ -783,15 +783,15 @@ emit_fenced_file() {
 emit_c_table() {
     local dependency_id version build_condition declared_license url makefile
     local scanned_file_count distinct_notice_count location
-    printf '| Dependency | Version | Built when | License (declared) | Pinned in | Location |\n'
-    printf '|------------|---------|------------|--------------------|-----------|----------|\n'
+    printf '| Dependency | Version | Built when | License (declared) | Pinned in | Source | Location |\n'
+    printf '|------------|---------|------------|--------------------|-----------|--------|----------|\n'
     while IFS='|' read -r dependency_id version build_condition declared_license url makefile \
         scanned_file_count distinct_notice_count location; do
         [[ -z "${dependency_id}" ]] && continue
         # shellcheck disable=SC2016  # backticks are literal markdown here.
-        printf '| `%s` | %s | `%s` | %s | `%s` | %s |\n' \
+        printf '| `%s` | %s | `%s` | %s | `%s` | %s | %s |\n' \
             "${dependency_id}" "${version}" "${build_condition}" "${declared_license}" \
-            "${makefile}" "${location}"
+            "${makefile}" "${url}" "${location}"
     done < "${C_INDEX}"
 }
 
@@ -862,10 +862,12 @@ EOF
 
 ## Bundled C Dependency Index
 
-`Location` is the dependency's own license file upstream, pinned to the version
-built here and checked by fetching it and comparing it byte for byte with the
-copy inside the archive. Where a dependency has no license file to link, the
-column says why; its terms are the per-file copyright notices reproduced below.
+`Source` is the archive libnvidia-container's `make deps` downloads and links
+in. `Location` is that dependency's own license file upstream, pinned to the
+version built here and checked by fetching it and comparing it byte for byte
+with the copy inside the archive. Where a dependency has no license file to
+link, the column says why; its terms are the per-file copyright notices
+reproduced below, and `Source` is then the only pointer to the code itself.
 
 EOF
         emit_c_table
