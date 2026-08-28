@@ -6,6 +6,7 @@ cyphar.com/go-pathrs	https://github.com/cyphar/libpathrs	go-pathrs
 github.com/Masterminds/semver/v3	https://github.com/Masterminds/semver	
 github.com/NVIDIA/go-nvlib	https://github.com/NVIDIA/go-nvlib	
 github.com/NVIDIA/go-nvml	https://github.com/NVIDIA/go-nvml	
+github.com/cilium/ebpf	https://github.com/cilium/ebpf	
 github.com/containerd/log	https://github.com/containerd/log	
 github.com/containerd/nri	https://github.com/containerd/nri	
 github.com/containerd/ttrpc	https://github.com/containerd/ttrpc	
@@ -23,6 +24,7 @@ github.com/moby/sys/symlink	https://github.com/moby/sys	symlink
 github.com/opencontainers/cgroups	https://github.com/opencontainers/cgroups	
 github.com/opencontainers/runc	https://github.com/opencontainers/runc	
 github.com/opencontainers/runtime-spec	https://github.com/opencontainers/runtime-spec	
+github.com/opencontainers/runtime-spec	https://github.com/opencontainers/runtime-spec	
 github.com/opencontainers/runtime-tools	https://github.com/opencontainers/runtime-tools	
 github.com/pelletier/go-toml	https://github.com/pelletier/go-toml	
 github.com/pmezard/go-difflib	https://github.com/pmezard/go-difflib	
@@ -36,6 +38,8 @@ github.com/urfave/cli/v3	https://github.com/urfave/cli
 github.com/xeipuuv/gojsonpointer	https://github.com/xeipuuv/gojsonpointer	
 golang.org/x/mod	https://go.googlesource.com/mod	
 golang.org/x/sys	https://go.googlesource.com/sys	
+golang.org/x/sys	https://go.googlesource.com/sys	
+golang.org/x/xerrors	https://go.googlesource.com/xerrors	
 google.golang.org/genproto/googleapis/rpc	https://github.com/googleapis/go-genproto	googleapis/rpc
 google.golang.org/grpc	https://github.com/grpc/grpc-go	
 google.golang.org/protobuf	https://go.googlesource.com/protobuf	

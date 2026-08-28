@@ -115,14 +115,15 @@ main() {
     verify_platform_matrix
     prepare_workspace
     collect_runtime
+    collect_bundled
     build_indexes
 
     local verified_urls_tmp_file failures=0
     verified_urls_tmp_file="$(mktemp "${TMPDIR:-/tmp}/nvidia-container-toolkit-urls.XXXXXX")"
 
-    local package _ module version repo subdir relative
+    local package _ module version source_kind module_dir repo subdir relative
     local origin_tag origin_hash plain_version pseudo_version_hash_value license_file name path_in_module want_sha found_url
-    while IFS=, read -r package _ _ module version; do
+    while IFS=, read -r package _ _ module version source_kind; do
         [[ -z "${package}" ]] && continue
 
         repo="$(repo_field "${module}" repo)" \
@@ -164,8 +165,9 @@ main() {
         (( ${#hash_refs[@]} > 0 )) && refs+=( "${hash_refs[@]}" )
         (( ${#refs[@]} > 0 )) || die "no ref candidates for ${module}@${version}."
 
-        relative="$(license_dir_within_module "${package}" "${module}")" \
-            || die "no license file found for ${package} under ${VENDOR_DIR}/${module}."
+        module_dir="$(module_source_dir "${module}" "${source_kind}")"
+        relative="$(license_dir_within_module "${package}" "${module}" "${module_dir}")" \
+            || die "no license file found for ${package} under ${module_dir}."
 
         local license_file_count=0
         while IFS= read -r license_file; do
@@ -173,9 +175,9 @@ main() {
             license_file_count=$(( license_file_count + 1 ))
             name="$(basename "${license_file}")"
             path_in_module="${relative:+${relative}/}${name}"
-            [[ -f "${VENDOR_DIR}/${module}/${path_in_module}" ]] \
-                || die "${VENDOR_DIR}/${module}/${path_in_module} does not exist."
-            want_sha="$(sha256_of_file "${VENDOR_DIR}/${module}/${path_in_module}")"
+            [[ -f "${module_dir}/${path_in_module}" ]] \
+                || die "${module_dir}/${path_in_module} does not exist."
+            want_sha="$(sha256_of_file "${module_dir}/${path_in_module}")"
 
             # Both layouts: a submodule may ship its own licence or inherit the
             # repository root's. Content decides which is real. Built as an
@@ -208,13 +210,13 @@ main() {
                 continue
             fi
             printf '%s\t%s\t%s\t%s\n' "${module}" "${version}" "${path_in_module}" "${found_url}" >> "${verified_urls_tmp_file}"
-        done < <(license_files_for "${VENDOR_DIR}/${module}${relative:+/${relative}}")
+        done < <(license_files_for "${module_dir}${relative:+/${relative}}")
 
         if (( license_file_count == 0 )); then
             log "UNVERIFIED ${module}@${version} — no license file found for ${package}"
             failures=$(( failures + 1 ))
         fi
-    done < "${INDEX_FILE}"
+    done < "${MERGED_INDEX}"
 
     (( failures == 0 )) || die \
         "${failures} license file(s) could not be matched to a verified upstream URL." \

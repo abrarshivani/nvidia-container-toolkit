@@ -7,6 +7,7 @@ github.com/Masterminds/semver/v3	v3.5.0	LICENSE.txt	https://github.com/Mastermin
 github.com/NVIDIA/go-nvlib	v0.12.0	LICENSE	https://github.com/NVIDIA/go-nvlib/blob/v0.12.0/LICENSE
 github.com/NVIDIA/go-nvlib	v0.12.0	NOTICE	https://github.com/NVIDIA/go-nvlib/blob/v0.12.0/NOTICE
 github.com/NVIDIA/go-nvml	v0.13.3-1	LICENSE	https://github.com/NVIDIA/go-nvml/blob/v0.13.3-1/LICENSE
+github.com/cilium/ebpf	v0.8.0	LICENSE	https://github.com/cilium/ebpf/blob/v0.8.0/LICENSE
 github.com/containerd/log	v0.1.0	LICENSE	https://github.com/containerd/log/blob/v0.1.0/LICENSE
 github.com/containerd/nri	v0.12.1	LICENSE	https://github.com/containerd/nri/blob/v0.12.1/LICENSE
 github.com/containerd/ttrpc	v1.2.7	LICENSE	https://github.com/containerd/ttrpc/blob/v1.2.7/LICENSE
@@ -22,6 +23,7 @@ github.com/moby/sys/reexec	v0.1.0	LICENSE	https://github.com/moby/sys/blob/reexe
 github.com/opencontainers/cgroups	v0.0.7	LICENSE	https://github.com/opencontainers/cgroups/blob/v0.0.7/LICENSE
 github.com/opencontainers/runc	v1.4.3	LICENSE	https://github.com/opencontainers/runc/blob/v1.4.3/LICENSE
 github.com/opencontainers/runc	v1.4.3	NOTICE	https://github.com/opencontainers/runc/blob/v1.4.3/NOTICE
+github.com/opencontainers/runtime-spec	v1.2.0	LICENSE	https://github.com/opencontainers/runtime-spec/blob/v1.2.0/LICENSE
 github.com/opencontainers/runtime-spec	v1.3.0	LICENSE	https://github.com/opencontainers/runtime-spec/blob/v1.3.0/LICENSE
 github.com/opencontainers/runtime-tools	v0.9.1-0.20251114084447-edf4cb3d2116	LICENSE	https://github.com/opencontainers/runtime-tools/blob/edf4cb3d2116/LICENSE
 github.com/pelletier/go-toml	v1.9.5	LICENSE	https://github.com/pelletier/go-toml/blob/v1.9.5/LICENSE
@@ -34,6 +36,8 @@ github.com/urfave/cli-altsrc/v3	v3.1.0	LICENSE	https://github.com/urfave/cli-alt
 github.com/urfave/cli/v3	v3.10.1	LICENSE	https://github.com/urfave/cli/blob/v3.10.1/LICENSE
 golang.org/x/mod	v0.38.0	LICENSE	https://go.googlesource.com/mod/+/refs/tags/v0.38.0/LICENSE
 golang.org/x/mod	v0.38.0	PATENTS	https://go.googlesource.com/mod/+/refs/tags/v0.38.0/PATENTS
+golang.org/x/sys	v0.46.0	LICENSE	https://go.googlesource.com/sys/+/refs/tags/v0.46.0/LICENSE
+golang.org/x/sys	v0.46.0	PATENTS	https://go.googlesource.com/sys/+/refs/tags/v0.46.0/PATENTS
 golang.org/x/sys	v0.47.0	LICENSE	https://go.googlesource.com/sys/+/refs/tags/v0.47.0/LICENSE
 golang.org/x/sys	v0.47.0	PATENTS	https://go.googlesource.com/sys/+/refs/tags/v0.47.0/PATENTS
 google.golang.org/genproto/googleapis/rpc	v0.0.0-20260414002931-afd174a4e478	LICENSE	https://github.com/googleapis/go-genproto/blob/afd174a4e478/LICENSE

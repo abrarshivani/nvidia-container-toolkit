@@ -31,6 +31,8 @@ HERE="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 source "${HERE}/license-url-lib.sh"
 
 MODULES_TXT="${MODULES_TXT:-vendor/modules.txt}"
+# The image ships libnvidia-container's libraries, so its modules need repos too.
+LNC_MODULES_TXT="${LNC_MODULES_TXT:-third_party/libnvidia-container/src/nvcgo/vendor/modules.txt}"
 OUTPUT="${OUTPUT:-hack/module-repos.tsv}"
 PROXY="${PROXY:-https://proxy.golang.org}"
 
@@ -139,7 +141,8 @@ main() {
         fi
 
         printf '%s\t%s\t%s\n' "${module}" "${repo}" "${subdir}" >> "${repos_tmp_file}"
-    done < <(LC_ALL=C grep '^# ' "${MODULES_TXT}" | awk '{print $2, $3}')
+    done < <(LC_ALL=C grep -h '^# ' "${MODULES_TXT}" ${LNC_MODULES_TXT:+"${LNC_MODULES_TXT}"} \
+        | awk '{print $2, $3}' | LC_ALL=C sort -u)
 
     # A warning, not a die: this resolves every module in modules.txt, including
     # the ten-odd build/test-only ones out of scope for the notices document, so

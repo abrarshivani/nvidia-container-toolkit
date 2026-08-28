@@ -106,25 +106,54 @@ touch "${vendor_fixture}/sigs.k8s.io/yaml/goyaml.v2/LICENSE.libyaml"
 touch "${vendor_fixture}/gopkg.in/yaml.v3/LICENSE"
 assert_eq "goyaml.v2" \
     "$(VENDOR_DIR="${vendor_fixture}" license_dir_within_module \
-        sigs.k8s.io/yaml/goyaml.v2 sigs.k8s.io/yaml)" \
+        sigs.k8s.io/yaml/goyaml.v2 sigs.k8s.io/yaml "${vendor_fixture}/sigs.k8s.io/yaml")" \
     "license_dir_within_module finds the nearest enclosing license"
 assert_eq "" \
     "$(VENDOR_DIR="${vendor_fixture}" license_dir_within_module \
-        sigs.k8s.io/yaml sigs.k8s.io/yaml)" \
+        sigs.k8s.io/yaml sigs.k8s.io/yaml "${vendor_fixture}/sigs.k8s.io/yaml")" \
     "license_dir_within_module is empty at the module root"
 # $1 is expanded by the child bash -c, not here.
 # shellcheck disable=SC2016
 assert_fails "license_dir_within_module fails when no license exists" \
     env VENDOR_DIR="${vendor_fixture}" bash -c \
-    'source "$1"; license_dir_within_module github.com/absent/mod github.com/absent/mod' \
+    'source "$1"; license_dir_within_module github.com/absent/mod github.com/absent/mod "$2"' \
+    _ "${HERE}/generate-third-party-notices.sh" "${vendor_fixture}/github.com/absent/mod"
+
+# merge_indexes: the two trees become one table, and the tree each row was
+# hashed against moves into the row.
+merge_runtime="$(mktemp)"
+merge_bundled="$(mktemp)"
+cat > "${merge_runtime}" <<'IDX'
+github.com/opencontainers/runtime-spec/specs-go,ignored,Apache-2.0,github.com/opencontainers/runtime-spec,v1.3.0
+github.com/google/uuid,ignored,BSD-3-Clause,github.com/google/uuid,v1.6.0
+IDX
+cat > "${merge_bundled}" <<'IDX'
+github.com/opencontainers/runtime-spec/specs-go,ignored,Apache-2.0,github.com/opencontainers/runtime-spec,v1.2.0
+github.com/google/uuid,ignored,BSD-3-Clause,github.com/google/uuid,v1.6.0
+IDX
+
+assert_eq "3" \
+    "$(merge_indexes "${merge_runtime}" "${merge_bundled}" | wc -l | tr -d ' ')" \
+    "merge_indexes keeps both versions of a module but collapses an identical pair"
+
+assert_eq "github.com/google/uuid,ignored,BSD-3-Clause,github.com/google/uuid,v1.6.0,vendor
+github.com/opencontainers/runtime-spec/specs-go,ignored,Apache-2.0,github.com/opencontainers/runtime-spec,v1.2.0,bundled
+github.com/opencontainers/runtime-spec/specs-go,ignored,Apache-2.0,github.com/opencontainers/runtime-spec,v1.3.0,vendor" \
+    "$(merge_indexes "${merge_runtime}" "${merge_bundled}")" \
+    "merge_indexes tags each row with its tree, sorts, and prefers this repository's copy"
+
+# $1 is expanded by the child bash -c, not here.
+# shellcheck disable=SC2016
+assert_fails "module_source_dir rejects an unknown source kind" \
+    env bash -c 'source "$1"; module_source_dir some/module wat' \
     _ "${HERE}/generate-third-party-notices.sh"
 
 render="$(mktemp -d)"
 mkdir -p "${render}/cache/sigs.k8s.io/yaml/goyaml.v2"
 printf 'Apache text\n' > "${render}/cache/sigs.k8s.io/yaml/goyaml.v2/LICENSE"
 cat > "${render}/index.csv" <<'IDX'
-sigs.k8s.io/yaml/goyaml.v2,ignored,Apache-2.0,sigs.k8s.io/yaml,v1.4.0
-gopkg.in/yaml.v3,ignored,MIT,gopkg.in/yaml.v3,v3.0.1
+sigs.k8s.io/yaml/goyaml.v2,ignored,Apache-2.0,sigs.k8s.io/yaml,v1.4.0,vendor
+gopkg.in/yaml.v3,ignored,MIT,gopkg.in/yaml.v3,v3.0.1,vendor
 IDX
 
 assert_eq '| Package | Version | License | Location |' \
@@ -142,7 +171,7 @@ assert_eq '| `sigs.k8s.io/yaml/goyaml.v2` | v1.4.0 | Apache-2.0 | [LICENSE](http
 # must abort the whole table, not render with a blank Location cell.
 mismatch_index="${render}/mismatch-index.csv"
 cat > "${mismatch_index}" <<'IDX'
-sigs.k8s.io/yaml/goyaml.v2,ignored,Apache-2.0,sigs.k8s.io/yaml,v9.9.9
+sigs.k8s.io/yaml/goyaml.v2,ignored,Apache-2.0,sigs.k8s.io/yaml,v9.9.9,vendor
 IDX
 # $1/$2 are expanded by the child bash -c, not here.
 # shellcheck disable=SC2016
@@ -152,7 +181,7 @@ assert_fails "emit_index_table fails closed when the URL map has no entry for a 
     bash -c 'source "$1"; emit_index_table "$2"' _ "${HERE}/generate-third-party-notices.sh" "${mismatch_index}"
 
 section="$(LICENSE_URLS="${urls_fixture}" VENDOR_DIR="${vendor_fixture}" LICENSES_DIR="${render}/cache" \
-    LICENSE_OVERRIDES="${empty_overrides_fixture}" emit_sections "${render}/index.csv" "${render}/cache")"
+    LICENSE_OVERRIDES="${empty_overrides_fixture}" emit_sections "${render}/index.csv")"
 assert_eq "* Version: v1.4.0" "$(printf '%s' "${section}" | sed -n 3p)" "section names the version"
 assert_eq "* License: Apache-2.0" "$(printf '%s' "${section}" | sed -n 4p)" "section names the license"
 assert_eq "0" "$(printf '%s' "${section}" | LC_ALL=C grep -c '^\* Module: ')" "section no longer names the module"
